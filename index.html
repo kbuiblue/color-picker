@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <section class="container">
+            <div class="top">
+                <input type="color" />
+                <select name="scheme-name">
+                    <option value="monochrome">Monochrome</option>
+                    <option value="monochrome-dark">Monochrome Dark</option>
+                    <option value="monochrome-light">Monochrome Light</option>
+                    <option value="analogic">Analogic</option>
+                    <option value="complement">Complement</option>
+                    <option value="analogic-complement">
+                        Analogic Complement
+                    </option>
+                    <option value="triad">Triad</option>
+                    <option value="quad">Quad</option>
+                </select>
+                <button type="button">Get Color Scheme</button>
+            </div>
+            <div class="bottom">
+                <div class="color root">
+                    <p class="hex-code"></p>
+                </div>
+                <div class="color"><p class="hex-code"></p></div>
+                <div class="color"><p class="hex-code"></p></div>
+                <div class="color"><p class="hex-code"></p></div>
+                <div class="color"><p class="hex-code"></p></div>
+            </div>
+        </section>
+        <script src="src/ts/main.ts"></script>
+    </body>
+</html>
