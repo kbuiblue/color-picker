@@ -3,13 +3,19 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <link rel="stylesheet" href="src/style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+            rel="stylesheet" />
+        <title>Color Picker</title>
     </head>
     <body>
         <section class="container">
             <div class="top">
-                <input type="color" />
-                <select name="scheme-name">
+                <input class="color-input gray-border" type="color" />
+                <select class="gray-border" name="scheme-name">
                     <option value="monochrome">Monochrome</option>
                     <option value="monochrome-dark">Monochrome Dark</option>
                     <option value="monochrome-light">Monochrome Light</option>
@@ -21,16 +27,31 @@
                     <option value="triad">Triad</option>
                     <option value="quad">Quad</option>
                 </select>
-                <button type="button">Get Color Scheme</button>
+                <button class="gray-border" type="button">
+                    Get Color Scheme
+                </button>
             </div>
             <div class="bottom">
-                <div class="color root">
-                    <p class="hex-code"></p>
+                <div class="color-container">
+                    <div class="color seed"></div>
+                    <p class="hex-code" hex-id="0">#000000</p>
                 </div>
-                <div class="color"><p class="hex-code"></p></div>
-                <div class="color"><p class="hex-code"></p></div>
-                <div class="color"><p class="hex-code"></p></div>
-                <div class="color"><p class="hex-code"></p></div>
+                <div class="color-container">
+                    <div class="color" color-id="1"></div>
+                    <p class="hex-code" hex-id="1">#000000</p>
+                </div>
+                <div class="color-container">
+                    <div class="color" color-id="2"></div>
+                    <p class="hex-code" hex-id="2">#000000</p>
+                </div>
+                <div class="color-container">
+                    <div class="color" color-id="3"></div>
+                    <p class="hex-code" hex-id="3">#000000</p>
+                </div>
+                <div class="color-container">
+                    <div class="color" color-id="4"></div>
+                    <p class="hex-code" hex-id="4">#000000</p>
+                </div>
             </div>
         </section>
         <script src="src/ts/main.ts"></script>
