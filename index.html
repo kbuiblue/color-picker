@@ -12,7 +12,7 @@
         <title>Color Picker</title>
     </head>
     <body>
-        <section class="container">
+        <section class="app-container">
             <div class="top">
                 <input class="color-input gray-border" type="color" />
                 <select class="gray-border" name="scheme-name">
@@ -33,27 +33,32 @@
             </div>
             <div class="bottom">
                 <div class="color-container">
-                    <div class="color seed"></div>
-                    <p class="hex-code" hex-id="0">#000000</p>
+                    <div class="color gray-border seed" data-id="0"></div>
+                    <p class="hex-code" data-id="0">#000000</p>
                 </div>
                 <div class="color-container">
-                    <div class="color" color-id="1"></div>
-                    <p class="hex-code" hex-id="1">#000000</p>
+                    <div class="color gray-border" data-id="1"></div>
+                    <p class="hex-code" data-id="1">#000000</p>
                 </div>
                 <div class="color-container">
-                    <div class="color" color-id="2"></div>
-                    <p class="hex-code" hex-id="2">#000000</p>
+                    <div class="color gray-border" data-id="2"></div>
+                    <p class="hex-code" data-id="2">#000000</p>
                 </div>
                 <div class="color-container">
-                    <div class="color" color-id="3"></div>
-                    <p class="hex-code" hex-id="3">#000000</p>
+                    <div class="color gray-border" data-id="3"></div>
+                    <p class="hex-code" data-id="3">#000000</p>
                 </div>
                 <div class="color-container">
-                    <div class="color" color-id="4"></div>
-                    <p class="hex-code" hex-id="4">#000000</p>
+                    <div class="color gray-border" data-id="4"></div>
+                    <p class="hex-code" data-id="4">#000000</p>
+                </div>
+            </div>
+            <div class="copied-container">
+                <div class="copied-color">
+                    <p class="copied-text">Copied!</p>
                 </div>
             </div>
         </section>
-        <script src="src/ts/main.ts"></script>
+        <script type="module" src="src/ts/main.ts"></script>
     </body>
 </html>

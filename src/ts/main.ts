@@ -11,11 +11,21 @@ interface ColorApiResponse {
 }
 
 const colorInput = document.querySelector<HTMLInputElement>(".color-input");
+const colorContainers: NodeListOf<HTMLDivElement> | null =
+    document.querySelectorAll<HTMLDivElement>(".color-container");
+
 const seedEl = document.querySelector<HTMLDivElement>(".seed");
-const seedHex = document.querySelector<HTMLParagraphElement>('[hex-id = "0"]');
+const seedHex = document.querySelector<HTMLParagraphElement>(
+    'p.hex-code[data-id = "0"]'
+);
+
 const select = document.querySelector<HTMLSelectElement>("select");
 const button = document.querySelector<HTMLButtonElement>("button");
-const container = document.querySelector<HTMLDivElement>(".container");
+const appContainer = document.querySelector<HTMLDivElement>(".app-container");
+
+let seedColor = "";
+let copiedCode: string | null = "";
+let colorScheme: string[] = [];
 
 colorInput?.addEventListener("input", function (e) {
     renderSeed(e);
@@ -25,22 +35,58 @@ if (button) {
     button.addEventListener("click", getColorScheme);
 }
 
-let seedColor = "";
-let colorScheme: string[] = [];
+if (colorContainers) {
+    colorContainers.forEach((container) => {
+        container.style.cursor = "pointer";
+        container.addEventListener("click", function (e: MouseEvent) {
+            copiedCode = getColorCode(e);
+            const copiedText =
+                document.querySelector<HTMLParagraphElement>(".copied-text");
+            const copiedContainer =
+                document.querySelector<HTMLDivElement>(".copied-container");
+
+            if (appContainer) {
+                appContainer.style.border = `5px solid ${copiedCode}`;
+            }
+
+            if (copiedCode && copiedText && copiedContainer) {
+                navigator.clipboard.writeText(copiedCode).then(() => {
+                    document.documentElement.style.setProperty(
+                        "--copied-color",
+                        copiedCode
+                    );
+                    copiedContainer.style.display = "block";
+                    copiedText.innerText = `Copied ${copiedCode}`;
+                });
+            }
+        });
+    });
+}
 
 function renderSeed(e: Event) {
     seedColor = (e.target as HTMLInputElement)?.value;
 
-    if (seedEl && seedHex && container) {
+    if (seedEl && seedHex) {
         seedEl.style.backgroundColor = `${seedColor}`;
-        container.style.border = `5px solid ${seedColor}`;
         document.documentElement.style.setProperty(
             "--input-focus-color",
             seedColor
         );
         seedHex.innerText = seedColor;
-        seedHex.style.color = seedColor;
     }
+}
+
+function getColorCode(e: MouseEvent) {
+    const target = e.target;
+
+    if (target) {
+        const targetEl = document.querySelector(
+            `p.hex-code[data-id = "${(target as HTMLDivElement).dataset.id}"]`
+        );
+        return (targetEl as HTMLElement)?.textContent ?? null;
+    }
+
+    return null;
 }
 
 function getColorScheme() {
@@ -71,16 +117,15 @@ function renderColorScheme() {
 
     for (const color of colorScheme) {
         const colorEl = document.querySelector<HTMLDivElement>(
-            `[color-id = "${id}"]`
+            `div.color[data-id = "${id}"]`
         );
         const hexEl = document.querySelector<HTMLParagraphElement>(
-            `[hex-id = "${id}"]`
+            `p.hex-code[data-id = "${id}"]`
         );
 
         if (colorEl && hexEl) {
             colorEl.style.backgroundColor = color;
             hexEl.innerText = color;
-            hexEl.style.color = color;
             id++;
         }
     }
