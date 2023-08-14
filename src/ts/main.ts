@@ -28,7 +28,7 @@ let copiedCode: string | null = "";
 let colorScheme: string[] = [];
 
 colorInput?.addEventListener("input", function (e) {
-    renderSeed(e);
+    renderSeedColor(e);
 });
 
 if (button) {
@@ -63,7 +63,7 @@ if (colorContainers) {
     });
 }
 
-function renderSeed(e: Event) {
+function renderSeedColor(e: Event) {
     seedColor = (e.target as HTMLInputElement)?.value;
 
     if (seedEl && seedHex) {
